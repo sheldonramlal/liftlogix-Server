@@ -22,13 +22,14 @@ app.use((req, res, next) => {
 })
 
 // routes
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+})
+
 app.use('/api/workouts', workoutRoutes)
 app.use('/api/user', userRoutes)
 
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-})
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
